@@ -39,6 +39,8 @@ public class JWTService {
     }
 
     private SecretKey getSignKey() {
+        //Arun: here and all the other places, add good amount of logging, logs are missing
+        //Remove below system.out.
         System.out.println("secret Key:" +secretKey);
         byte[] keyBytes = Decoders.BASE64.decode(secretKey);
         return Keys.hmacShaKeyFor(keyBytes);

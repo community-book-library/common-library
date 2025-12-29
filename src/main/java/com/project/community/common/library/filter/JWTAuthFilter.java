@@ -33,6 +33,7 @@ public class JWTAuthFilter extends OncePerRequestFilter {
         final String authHeader = request.getHeader("Authorization");
 
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            //Arun: should throw error - 401 instead of continuing
             filterChain.doFilter(request, response);
             return;
         }
@@ -52,6 +53,8 @@ public class JWTAuthFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             }
         }
+        //Arun: else block should throw error - 401 as username could not be determined
+
         filterChain.doFilter(request, response);
     }
 }

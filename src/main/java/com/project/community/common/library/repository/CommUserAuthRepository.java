@@ -7,5 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CommUserAuthRepository extends JpaRepository<UserAuth,Integer> {
 
+    //Arun: all interface methods are default public, remove public from next line
     public UserAuth findByUsername(String username);
 }
