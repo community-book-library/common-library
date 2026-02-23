@@ -5,8 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-
 @Entity(name="user_auth")
 @Data
 @AllArgsConstructor
@@ -27,6 +25,12 @@ public class UserAuth {
         CREATED, LOCKED, ACTIVE, DISABLED
     }
 
+    @Column(name = "mfa_enabled")
+    private boolean mfaEnabled = true;
+
+    @Column(name = "mfa_method")
+    private String mfaMethod = "EMAIL";
+
     @Enumerated(EnumType.STRING)
     @Column(name = "login_status")
     private LoginStatus loginStatus;
@@ -40,9 +44,9 @@ public class UserAuth {
     @Column(name="updated_by")
     private String updatedBy;
 
-    @Column(name="created_timestamp")
-    private LocalDateTime createdTimestamp;
 
-    @Column(name="updated_timestamp")
-    private LocalDateTime updatedTimestamp;
+    private boolean enabled = true;
+
+    @Column(name="account_non_locked")
+    private boolean accountNonLocked = true;
 }
